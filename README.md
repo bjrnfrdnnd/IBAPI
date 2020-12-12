@@ -53,6 +53,9 @@ Explain what these tests test and why
 ```
 Give an example
 ```
+## Inspired by
+
+Based on [An article on quantstart](https://www.quantstart.com/articles/connecting-to-the-interactive-brokers-native-python-api/)
 
 ## Deployment
 
