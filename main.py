@@ -1,16 +1,30 @@
-# This is a sample Python script.
+# ib_api_connection.py
+import datetime
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from IBAPI.ib_api_connection import IBAPIApp
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    # Application parameters
+    host = '127.0.0.1'  # Localhost, but change if TWS is running elsewhere
+    port = 7497  # Change to the appropriate IB TWS account port number
+    client_id = 1234
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    print("Launching IB API application...")
+
+    # Instantiate the IB API application
+    app = IBAPIApp(host, port, client_id)
+
+    print("Successfully launched IB API application...")
+
+    # Obtain the server time via the IB API app
+    server_time = app.obtain_server_time()
+    server_time_readable = datetime.datetime.utcfromtimestamp(
+        server_time
+    ).strftime('%Y-%m-%d %H:%M:%S')
+
+    print("Current IB server time: %s" % server_time_readable)
+
+    # Disconnect from the IB server
+    app.disconnect()
+
+    print("Disconnected from the IB API application. Finished.")

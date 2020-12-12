@@ -172,6 +172,9 @@ class IBAPIApp(IBAPIWrapper, IBAPIClient):
         IBAPIWrapper.__init__(self)
         IBAPIClient.__init__(self, wrapper=self)
 
+        # Listen for the IB responses
+        self.init_error()
+
         # Connects to the IB server with the
         # appropriate connection parameters
         self.connect(ipaddress, portid, clientid)
@@ -181,5 +184,4 @@ class IBAPIApp(IBAPIWrapper, IBAPIClient):
         thread.start()
         setattr(self, "_thread", thread)
 
-        # Listen for the IB responses
-        self.init_error()
+
